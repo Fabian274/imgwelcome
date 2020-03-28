@@ -45,7 +45,7 @@ class ImgWelcome(commands.Cog):
 		if len(B)>=33:G((152,73),B,1,Z,F);C.text((152,73),B,font=Z,fill=I)
 		if not U:S=sorted(D.guild.members,key=lambda m:m.joined_at).index(D)+1
 		else:S=int(U)
-		f=str(S)+J._get_suffix(S);g=str(D.guild.name)+'!'if len(str(D.guild.name))<=28 else str(D.guild.name)[:23]+'...';G((152,96),f"Du bist der {str(f)} Benutzer",1,L,F);C.text((152,96),f"Du bist der {str(f)} Benutzer",font=L,fill=b);G((152,116),w+g,1,L,F);C.text((152,116),w+g,font=L,fill=b);T=BytesIO();E.save(T,format='PNG');T.seek(0);return T
+		f=str(S)+J._get_suffix(S);g=str(D.guild.name)+'!'if len(str(D.guild.name))<=28 else str(D.guild.name)[:23]+'...';G((152,96),f"Du bist der {str(f)} Benutzer",1,L,F);C.text((152,96),f"du bist der {str(f)} Benutzer",font=L,fill=b);G((152,116),w+g,1,L,F);C.text((152,116),w+g,font=L,fill=b);T=BytesIO();E.save(T,format='PNG');T.seek(0);return T
 	async def _circle_border(C,circle_img_size:tuple):
 		A=circle_img_size;B=[]
 		for D in range(len(A)):B.append(A[0]+8)
@@ -90,7 +90,10 @@ class ImgWelcome(commands.Cog):
 		'Set the text outline. White or black.';B=outline;A=ctx;C=_A
 		if B=='white':await self.config.guild(A.guild).OUTLINE_COLOR.set([255,255,255,255])
 		elif B=='black':await self.config.guild(A.guild).OUTLINE_COLOR.set([0,0,0,255])
-		else:await A.send('Outline color is invalid. Use white or black.');C=_C
+		elif B=='red':await self.config.guild(A.guild).OUTLINE_COLOR.set([255,0,0,255])
+		elif B=='green':await self.config.guild(A.guild).OUTLINE_COLOR.set([0,255,0,255])
+		elif B=='blue':await self.config.guild(A.guild).OUTLINE_COLOR.set([0,0,255,255])
+		else:await A.send('Outline color is invalid. Use white or black or red or green or blue.');C=_C
 		if C:await A.send('The text outline has been set.')
 	@imgwelcome.command(name='preview')
 	@checks.mod_or_permissions(administrator=_A)
