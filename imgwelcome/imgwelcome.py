@@ -31,7 +31,7 @@ class ImgWelcome(commands.Cog):
 	def __init__(A,bot):A.bot=bot;A.config=Config.get_conf(A,2713933330,force_registration=_A);A.datapath=str(cog_data_path(raw_name='ImgWelcome'));A.imgpath=str(bundled_data_path(A));B={'ANNOUNCE':_C,'ACCOUNT_WARNINGS':_A,_O:f"{A.imgpath}/transparent.png",_P:[255,255,255,230],'CHANNEL':_B,_Q:[128,128],_E:f"{A.imgpath}/fonts/UniSansHeavy.otf",_F:30,_G:22,_H:18,_I:12,_R:[0,0,0,255],_J:f"{A.imgpath}/fonts/UniSansHeavy.otf",_K:20,_S:[255,255,255,230],'SPECIAL_USERS':_A,_T:[255,255,255,230],_L:f"{A.imgpath}/fonts/UniSansHeavy.otf",_M:50};A.config.register_guild(**B);A.session=aiohttp.ClientSession();A.version='0.3.1'
 	def cog_unload(A):A.bot.loop.create_task(A.session.close())
 	async def _create_welcome(J,member,test_member_number:int=_B):
-		w='of ';v='Welcome';u='L';U=test_member_number;D=member;A=await J.config.guild(D.guild).all();h=A[_L];i=A[_M];j=A[_J];k=A[_K];K=A[_E];l=A[_F];m=A[_G];n=A[_H];o=A[_I];V=ImageFont.truetype(h,i);L=ImageFont.truetype(j,k);W=ImageFont.truetype(K,l);X=ImageFont.truetype(K,m);Y=ImageFont.truetype(K,n);Z=ImageFont.truetype(K,o);a=Image.open(A[_O]).convert(_D);p=Image.open(J.imgpath+'/noimage.png');E=Image.new(_D,(500,150));E=ImageOps.fit(a,(500,150),centering=(0.5,0.5));E.paste(a);E=E.resize((500,150),Image.NEAREST);M=Image.new(u,(512,512),0);q=ImageDraw.Draw(M);q.ellipse(((0,0),(512,512)),fill=255);P=tuple(A[_Q]);M=M.resize(P,Image.ANTIALIAS)
+		w='in der ';v='Willkommen';u='L';U=test_member_number;D=member;A=await J.config.guild(D.guild).all();h=A[_L];i=A[_M];j=A[_J];k=A[_K];K=A[_E];l=A[_F];m=A[_G];n=A[_H];o=A[_I];V=ImageFont.truetype(h,i);L=ImageFont.truetype(j,k);W=ImageFont.truetype(K,l);X=ImageFont.truetype(K,m);Y=ImageFont.truetype(K,n);Z=ImageFont.truetype(K,o);a=Image.open(A[_O]).convert(_D);p=Image.open(J.imgpath+'/noimage.png');E=Image.new(_D,(500,150));E=ImageOps.fit(a,(500,150),centering=(0.5,0.5));E.paste(a);E=E.resize((500,150),Image.NEAREST);M=Image.new(u,(512,512),0);q=ImageDraw.Draw(M);q.ellipse(((0,0),(512,512)),fill=255);P=tuple(A[_Q]);M=M.resize(P,Image.ANTIALIAS)
 		try:H=BytesIO();await D.avatar_url.save(H,seek_begin=_A);H=Image.open(H).convert(_D)
 		except Exception as x:print('imgwelcome cog: {e}');H=p
 		Q=ImageOps.fit(H,P,centering=(0,0));Q.putalpha(M);R=tuple(A[_P]);I=tuple(A[_T]);b=tuple(A[_S]);F=tuple(A[_R]);c=Image.new(u,(512,512),0);r=ImageDraw.Draw(c);r.ellipse((0,0)+(512,512),fill=255,outline=0);N=Image.new(_D,(512,512));s=ImageDraw.Draw(N);s.ellipse([0,0,512,512],fill=(R[0],R[1],R[2],180),outline=(255,255,255,250));O=await J._circle_border(P);N=N.resize(O,Image.ANTIALIAS);t=c.resize(O,Image.ANTIALIAS);d=7+int((136-O[0])/2);e=11+int((136-O[0])/2);C=ImageDraw.Draw(E);E.paste(N,(d,d),t);E.paste(Q,(e,e),Q);B=f"{str(D)}"
@@ -45,13 +45,13 @@ class ImgWelcome(commands.Cog):
 		if len(B)>=33:G((152,73),B,1,Z,F);C.text((152,73),B,font=Z,fill=I)
 		if not U:S=sorted(D.guild.members,key=lambda m:m.joined_at).index(D)+1
 		else:S=int(U)
-		f=str(S)+J._get_suffix(S);g=str(D.guild.name)+'!'if len(str(D.guild.name))<=28 else str(D.guild.name)[:23]+'...';G((152,96),f"You are the {str(f)} member",1,L,F);C.text((152,96),f"You are the {str(f)} member",font=L,fill=b);G((152,116),w+g,1,L,F);C.text((152,116),w+g,font=L,fill=b);T=BytesIO();E.save(T,format='PNG');T.seek(0);return T
+		f=str(S)+J._get_suffix(S);g=str(D.guild.name)+'!'if len(str(D.guild.name))<=28 else str(D.guild.name)[:23]+'...';G((152,96),f"Du bist der {str(f)} Benutzer",1,L,F);C.text((152,96),f"Du bist der {str(f)} Benutzer",font=L,fill=b);G((152,116),w+g,1,L,F);C.text((152,116),w+g,font=L,fill=b);T=BytesIO();E.save(T,format='PNG');T.seek(0);return T
 	async def _circle_border(C,circle_img_size:tuple):
 		A=circle_img_size;B=[]
 		for D in range(len(A)):B.append(A[0]+8)
 		return tuple(B)
 	def _get_suffix(D,num):
-		C='th';B={1:'st',2:'nd',3:'rd'}
+		C='te';B={1:'te',2:'te',3:'te'}
 		if 10<=num%100<=20:A=C
 		else:A=B.get(num%10,C)
 		return A
